@@ -1,0 +1,13 @@
+{% extends "nyandu/base.html" %}
+
+{% block content %}
+
+<h1>Página Principal</h1>
+{% if user.is_authenticated %}
+    <p>Listado de las funciones habilitadas</p>
+{% else %}
+    <p>Debe Loguearse para poder usar las funciones.</p>
+{% endif %}
+
+
+{% endblock %}

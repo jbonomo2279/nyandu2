@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'nyandu/style.css' %}">
+    <title>{% block title %}Nyandü - Ingreso {% endblock %}</title>
+</head>
+<body style= "background-color:#fef2c0;">
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+
+                <div id="panelC" style=" background-color:#fea115; top:50%; text-align: center; border-radius: 25px;">
+
+                <h2><strong>¡Bienvenido!<strong></h2>
+
+  {% if form.errors %}
+    <p>Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Su cuenta no tiene acceso a esta página. Para continuar,
+      Inicie sesión con una cuenta que tenga acceso.</p>
+    {% else %}
+      <p>Por favor inicie su sesión para ver esta página.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table style="display: flex; justify-content: center;">
+      <tr>
+
+        <td>{{ form.username }} </td>
+      </tr>
+      <tr>
+          <td><br></td>
+      </tr>
+      <tr>
+
+        <td>{{ form.password }}  </td>
+      </tr>
+    </table>
+
+    <br>
+    <input type="submit" value="Iniciar Sesión">
+    <input type="hidden" name="next" value="{{ next }}">
+  </form>
+
+  {# Asume que configura la vista de restablecimiento de contraseña en su URLconf #}
+  <p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>
+
+                </div>
+        </div>
+  </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
