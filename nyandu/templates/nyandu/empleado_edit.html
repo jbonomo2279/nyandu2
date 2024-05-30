@@ -1,0 +1,13 @@
+{% extends "nyandu/base.html" %}
+
+{% block content %}
+{% load static %}
+<h1>Empleado</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar!</button>
+    </form>
+
+</div>
+{% endblock %}

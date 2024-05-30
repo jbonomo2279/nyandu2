@@ -2,22 +2,40 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'nyandu/style.css' %}">
-<div>
-    <h1>Reporte de Aviones</h1>
-    {% if avion_list %}
-    <ul>
 
-      {% for avion in avion_list %}
-      <li>
-        <a href="{{avion.id}}">{{ avion }}</a>
-      </li>
-      {% endfor %}
+<div class=container>
+    <div class="row">
+        <h1>Listado de Aviones</h1>
+    </div>
+    <br>
+    <div class="row">
+        <a href="{% url 'avion-create'%}" class="btn btn-success"><i class='fas fa-plus-circle'></i>Crear un nuevo avión</a>
+    </div>
+    <br>
+    {% if avion_list %}
+
+    <ul class="list-group">
+        {% for avion in avion_list %}
+
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col"><a href="{{avion.id}}">{{ avion }}</a></a></div>
+                    <div class="col"><a href="{% url 'avion-update' avion.id %}" class="btn btn-primary" data-toggle="tooltip" title="Modificar avión"><i class='fas fa-edit'></i></a>
+                        <a href="{%url 'avion-delete' avion.id  %}" class="btn btn-danger" data-toggle="tooltip" title="Borrar avión"><i class='fas fa-ban'></i></a>
+                    </div>
+                    
+                </div>
+
+        </li>
+
+        {% endfor %}
 
     </ul>
     {% else %}
-      <p>No hay aviones registrados.</p>
+        <div class="row">
+            <p>No hay aviones registrados.</p>
+        </div>
     {% endif %}
-
+    
 </div>
 {% endblock %}

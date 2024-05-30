@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Pais(models.Model):
-    nombre = models.CharField(max_length=30, unique=True, help_text= "Nombre del país")
+    nombre = models.CharField(max_length=30, help_text= "Nombre del país")
 
     def __str__(self):
         return f"{self.nombre}"
@@ -26,7 +26,7 @@ class Provincia(models.Model):
 
 class Aeropuerto(models.Model):
     nombre = models.CharField(max_length=30, help_text= "Nombre del aeropuerto")
-    codigo_iata = models.CharField(max_length=3, unique=True, help_text= "Código IATA del aeropuerto")
+    codigo_iata = models.CharField(max_length=3, help_text= "Código IATA del aeropuerto")
     provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE, help_text= "Provincia donde está el aeropuerto")
 
     def __str__(self):
@@ -69,21 +69,6 @@ class Avion(models.Model):
     class Meta:
         verbose_name_plural = "Aviones"
 
-class Genero(models.Model):
-    GENERO = {
-        "M":"Masculino",
-        "F":"Femenino",
-        "X": "Otro",
-        }
-
-    genero = models.CharField(max_length=1, choices=GENERO)
-
-
-    def __str__(self):
-        return f"{self.genero}"
-
-    class Meta:
-        verbose_name_plural = "Generos"
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=30,help_text= "Nombre de la categoría")
@@ -97,18 +82,23 @@ class Categoria(models.Model):
         verbose_name_plural = "Categorias"
 
 class Empleado(models.Model):
+    GENERO = {
+        "M":"Masculino",
+        "F":"Femenino",
+        "X": "Otro",
+        }
     nombre_completo = models.CharField(max_length=60, help_text= "Nombre y Apellido del empleado")
     email = models.EmailField(max_length=254,help_text= "Correo electrónico del empleado")
     telefono = models.CharField(max_length=30,help_text= "Teléfono del empleado")
     direccion = models.CharField(max_length=30,help_text= "Dirección donde reside el empleado")
-    localidad = models.CharField(max_length=30,help_text= "Localidad donde reside el empleado")
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, help_text= "Categoria del empleado")
-    provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE, help_text= "Provincia donde reside el empleado")
-    genero = models.ForeignKey(Genero, on_delete=models.CASCADE, help_text= "Género con el que se autopersive el empleado")
+    localidad = models.CharField(max_length=30,help_text= "Localidad donde reside el empleado", null=True, blank=True)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, help_text= "Categoria del empleado", null= True, blank=True)
+    provincia = models.ForeignKey(Provincia, on_delete=models.CASCADE, help_text= "Provincia donde reside el empleado",null=True, blank=True)
+    genero = models.CharField(max_length=1, choices=GENERO,null=True, blank=True)
 
 
     def __str__(self):
-        return f"Empleado {self.id} : {self.nombre_completo}"
+        return f"{self.id} : {self.nombre_completo}"
 
     class Meta:
         verbose_name_plural = "Empleados"

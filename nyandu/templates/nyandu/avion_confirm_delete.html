@@ -1,0 +1,18 @@
+{% extends "nyandu/base.html" %}
+
+{% block content %}
+{% load static %}
+    <h1>Borrar Avión</h1>
+
+    {% if user.is_authenticated %}
+
+        <p>Estás seguro que querés borrar a: {{ avion }}?</p>
+
+        <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" formaction=" " value="Si, borrar." />
+        </form>
+    {% else %}
+        <p>Debe Loguearse para poder usar las funciones.</p>
+    {% endif %}
+{% endblock %}

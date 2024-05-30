@@ -45,17 +45,21 @@
 
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
-    <table style="display: flex; justify-content: center;">
-      <tr>
-
-        <td>{{ form.username }} </td>
-      </tr>
+    <table style="display: flex; justify-content: center; ">
+        <tr>
+            <td style= "font-size: 0.875em">{{ form.username.label_tag }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.username}}</td>
+        </tr>
       <tr>
           <td><br></td>
       </tr>
       <tr>
-
-        <td>{{ form.password }}  </td>
+        <td style= "font-size: 0.875em">{{ form.password.label_tag }}</td>
+      </tr>
+      <tr>
+          <td>{{ form.password }}</td>
       </tr>
     </table>
 

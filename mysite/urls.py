@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from nyandu import views
 
 urlpatterns = [
+    path('', views.principal, name='principal'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('nyandu/', include('nyandu.urls')),
     path('admin/', admin.site.urls),]

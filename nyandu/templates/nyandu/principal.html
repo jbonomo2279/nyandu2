@@ -2,29 +2,44 @@
 
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'nyandu/style.css' %}">
-<div>
-    <h1>Menú</h1>
+<div class=container>
+    <div class="row">
+        <div  class="col" >
+            <h1 class="text-center"><strong>Menú</strong></h1>
+        </div>
+    </div>
     {% if user.is_authenticated %}
-        <div id="opciones">
-            <div id=op1>
-                <h2>Gestión de vuelos</h2>
-                <a href="{% url 'vuelos' %}">Ingresar al reporte</a>
-            </div>
-            <div id=op2>
-                <h2>Gestión de Aviones</h2>
-                <a href="{% url 'aviones' %}">Ingresar al reporte</a>
-            </div>
-            <div id=op3>
-                 <h2>Gestión de Tripulación</h2>
-            </div>
+        <div class="row">
+
+                <div id=op1 class="col-sm-4" >
+                    <div class="card">
+                        <div class="card-header"><h2 class="text-center">Gestión Vuelos</h2></div>
+                        <div class="card-body"><img src="{% static 'nyandu/gestion-vuelos.png' %}" alt="logo-vuelo" class="mx-auto d-block" height="200"></img></div>
+                        <div class="card-footer"><a href="{% url 'vuelos' %}"><h3 class="text-center">Ingresar al Listado</h3></a></div>
+
+                    </div>
+                </div>
+                <div id=op2 class="col-sm-4" >
+                    <div class="card">
+                        <div class="card-header"><h2 class="text-center">Gestión Aviones</h2></div>
+                        <div class="card-body"><img src="{% static 'nyandu/gestion-aviones.png' %}" alt="logo-vuelo" class="mx-auto d-block" height="200"></img></div>
+                        <div class="card-footer"><a href="{% url 'aviones' %}"><h3 class="text-center">Ingresar al Listado</h3></a></div>
+
+                    </div>
+                </div>
+                <div id=op3 class="col-sm-4">
+                    <div class="card">
+                        <div class="card-header"><h2 class="text-center">Gestión Tripulación</h2></div>
+                        <div class="card-body"><img src="{% static 'nyandu/gestion-tripulacion.png' %}" alt="logo-vuelo" class="mx-auto d-block" height="200"></img></div>
+                        <div class="card-footer"><a href="{% url 'empleados' %}"><h3 class="text-center">Ingresar al Listado</h3></a></div>
+
+                    </div>
+                </div>
 
         </div>
+
     {% else %}
-    <p>Debe Loguearse para poder usar las funciones.</p>
+        <p>Debe Loguearse para poder usar las funciones.</p>
     {% endif %}
-
-
-
 </div>
 {% endblock %}

@@ -10,7 +10,7 @@
 
       {% for vuelo in vuelo_list %}
       <li>
-        <a href="{{vuelo.id}}">{{ vuelo }}</a>
+        <a href="{{vuelo.id}}">{{ vuelo }}</a> <a href="{% url 'vuelo-update' vuelo.id %}">--Editar--</a> <a href="{%url 'vuelo-delete' vuelo.id  %}">--Borrar--</a>
       </li>
       {% endfor %}
 
@@ -18,6 +18,8 @@
     {% else %}
       <p>No hay vuelos registrados.</p>
     {% endif %}
+
+    <a href="{% url 'vuelo-create'%}">Crear un nuevo vuelo</a>
 
 </div>
 {% endblock %}

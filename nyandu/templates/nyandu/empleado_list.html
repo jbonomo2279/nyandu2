@@ -1,0 +1,21 @@
+{% extends "nyandu/base.html" %}
+
+{% block content %}
+
+    <h1>Listado de Empleados</h1>
+    {% if empleado_list %}
+    <ul>
+
+      {% for empleado in empleado_list %}
+      <li>
+        <a href="{{empleado.id}}">{{ empleado }}</a><a href="{% url 'empleado-update' empleado.id %}">--Editar--</a> <a href="{%url 'empleado-delete' empleado.id  %}">--Borrar--</a>
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay empleados registrados.</p>
+    {% endif %}
+    <a href="{% url 'empleado-create'%}">Crear un nuevo empleado</a>
+
+{% endblock %}

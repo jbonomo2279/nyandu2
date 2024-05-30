@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pais, Provincia, Aeropuerto, Fabricante, Modelo, Avion, Empleado, Vuelo, Categoria, Genero
+from .models import Pais, Provincia, Aeropuerto, Fabricante, Modelo, Avion, Empleado, Vuelo, Categoria
 
 # Register your models here.
 
@@ -12,5 +12,5 @@ admin.site.register(Avion)
 admin.site.register(Empleado)
 admin.site.register(Vuelo)
 admin.site.register(Categoria)
-admin.site.register(Genero)
+
 

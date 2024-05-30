@@ -1,0 +1,16 @@
+{% extends "nyandu/base.html" %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+            {{ form.as_table }}
+            </table>
+            <input type="submit" value="Guardar" formaction=" "/>
+        </form>
+    {% else %}
+        <p>Debe Loguearse para poder usar las funciones.</p>
+    {% endif %}
+{% endblock %}
